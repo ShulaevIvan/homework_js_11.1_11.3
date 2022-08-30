@@ -1,0 +1,3 @@
+###
+GET https://netology-slow-rest.herokuapp.com
+Content-Type: application/json
