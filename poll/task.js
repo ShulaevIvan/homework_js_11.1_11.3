@@ -11,7 +11,7 @@ function getData(){
                 resolve(request.responseText)
             }
             else if (request.status >= 400 || request.status >= 500){
-                alert('Ошибка, повторите позднее')
+                reject('Ошибка, повторите позднее')
             };
         });
     });
@@ -52,10 +52,14 @@ function sendData(votId, ansId, ansWrap){
                 });
             }
             else if (request.status >= 400 || request.status >= 500){
-                alert('Ошибка, повторите позднее')
+               
+                reject('Ошибка, повторите позднее')
             };
         });
-    });
+    })
+    .catch((value)=>{
+        alert(value)
+    })
 };
 
 
@@ -103,5 +107,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
             })
         };
 
-    });
+    })
+    .catch((value)=>{
+        alert(value)
+    })
 });
