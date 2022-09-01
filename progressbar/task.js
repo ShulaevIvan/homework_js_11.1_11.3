@@ -18,7 +18,7 @@ function sendRequest(data){
     };
 
     request.onloadend = ()=> {
-      if (request.status >= 200) {
+      if (request.status >= 200 && request.status < 300) {
 
         progress.setAttribute('value', 1)
         progressText.remove()
