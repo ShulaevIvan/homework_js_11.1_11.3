@@ -1,23 +1,27 @@
 function sendRequest(data){
 
-  return new Promise((resolve, reject)=>{
+  return new Promise((resolve, reject)=> {
 
     let request = new XMLHttpRequest()
     let progress = document.querySelector('#progress')
     let card = document.querySelector('.card')
     let progressText = document.createElement('p')
 
-    card.appendChild(progressText)
+    card.appendChild(progressText) 
+   
+    request.upload.onprogress = (e)=> {
 
-    request.onprogress = (e)=>{
+      let percent = (e.loaded / e.total * 100).toFixed()
 
-      if (e.loaded){
-        progressText.textContent = `загружено ${e.loaded} байт`
-        progress.setAttribute('value', e.loaded / 100000000)
-      };
+      e.loaded == e.total ? progressText.remove() : ('')
+
+      progress.setAttribute('value', percent/100)
+      progressText.textContent = `загружено ${e.loaded} из ${e.total} байт`
+      
     };
 
-    request.onloadend = ()=> {
+  
+    request.upload.onloadend = ()=> {
       if (request.status >= 200 && request.status < 300) {
 
         progress.setAttribute('value', 1)
